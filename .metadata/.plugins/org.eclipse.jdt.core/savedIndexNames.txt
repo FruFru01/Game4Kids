@@ -7,7 +7,6 @@ INDEX VERSION 1.127+C:\Users\FruFru\Documents\GitHub\Project_Work\.metadata\.plu
 1146612497.index
 2996702070.index
 1466676556.index
-1203239844.index
 1217973535.index
 1942797488.index
 2316376532.index
