@@ -1,5 +1,6 @@
 package at.fhj.itm13.projectwork;
 
+import at.fhj.itm13.projectwork.screen.GameScreen;
 import at.fhj.itm13.projectwork.screen.ScreenManager;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -9,12 +10,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ShooterGame extends ApplicationAdapter {
 	private SpriteBatch batch;
-	public static int WIDTH = 480, HEIGHT = 800;	
+	public static int WIDTH = 480, HEIGHT = 800;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		
+		ScreenManager.setCurrentScreen(new GameScreen());
 	}
 	
 	@Override

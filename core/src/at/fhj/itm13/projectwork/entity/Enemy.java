@@ -1,19 +1,25 @@
 package at.fhj.itm13.projectwork.entity;
 
-import com.badlogic.gdx.graphics.Texture;
+import at.fhj.itm13.projectwork.AssetManager;
+import at.fhj.itm13.projectwork.ShooterGame;
+
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class Enemy extends Entity{
 
-	public Enemy(Texture texture, Vector2 pos, Vector2 direction) {
-		super(texture, pos, direction);
-		// TODO Auto-generated constructor stub
+	public Enemy(Vector2 pos, Vector2 direction) {
+		super(AssetManager.ENEMY, pos, direction);
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		pos.add(direction);
 		
+		if(pos.y < 0 - AssetManager.ENEMY.getHeight()) {
+			float x = MathUtils.random(0, ShooterGame.WIDTH - AssetManager.ENEMY.getWidth());
+			pos.set(x, ShooterGame.HEIGHT);  
+		}
 	}
 
 }
