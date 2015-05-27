@@ -7,21 +7,35 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 
 public class Player extends Entity {
+	
+	private EntityManager entityManager;
 
-	public Player(Vector2 pos, Vector2 direction) {
+	public Player(Vector2 pos, Vector2 direction, EntityManager entityManager) {
 		super(AssetManager.PLAYER, pos, direction);
+		this.entityManager = entityManager;
 	}
 
 	@Override
 	public void update() {
 		pos.add(direction);
 		
-		if(Gdx.input.isKeyPressed(Keys.A) || Gdx.input.getX()+10 < pos.x) 
+		int dir = 0;
+		if(Gdx.input.isTouched()) {
+			if(Gdx.input.getX() < pos.x + texture.getWidth()/2)
+				dir=1;
+			if(Gdx.input.getX() > pos.x + texture.getWidth()/2)
+				dir=2;
+		}
+		
+		if(Gdx.input.isKeyPressed(Keys.A) || dir == 1) 
 			setDirection(-300, 0);
-		else if(Gdx.input.isKeyPressed(Keys.D) || Gdx.input.getX() > pos.x + AssetManager.PLAYER.getWidth()+10)
+		else if(Gdx.input.isKeyPressed(Keys.D) || dir == 2)
 			setDirection(300, 0);
 		else
 			setDirection(0, 0);
+		
+		//if(Gdx.input.isKeyPressed(Keys.SPACE))
+			entityManager.addMissile(new Missile(new Vector2(pos.x + texture.getWidth()/2, pos.y), new Vector2(0, 5)));
 	}
 
 }

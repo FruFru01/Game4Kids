@@ -12,8 +12,10 @@ public class EntityManager {
 
 	private final Array<Enemy> enemies = new Array<Enemy>();
 	private final Array<Missile> missiles = new Array<Missile>();
-	private final Player player = new Player(new Vector2(230, 50), new Vector2(0,0));
+	private final Player player = new Player(new Vector2(230, 50), new Vector2(0,0), this);
 	private int enemyAmount;
+	private long timestamp = 0;
+	private boolean gameover = false;
 	
 	public EntityManager() {
 		enemyAmount = 10;
@@ -28,9 +30,11 @@ public class EntityManager {
 		player.update();
 		for(Enemy e : enemies) {
 			e.update();
+			collisionDetection(e);
 		}
 		for(Missile m : missiles) {
 			m.update();
+			removeMissiles(m);
 		}
 	}
 	
@@ -49,7 +53,10 @@ public class EntityManager {
 	}
 	
 	public void addMissile(Missile m) {
-		missiles.add(m);
+		if(System.currentTimeMillis() >= timestamp + 300) {
+			missiles.add(m);
+			timestamp = System.currentTimeMillis();
+		}
 	}
 	
 	public void setEnemyAmount(int amount) {
@@ -63,6 +70,22 @@ public class EntityManager {
 			float speed = MathUtils.random(2,5);
 			addEnemy((new Enemy(new Vector2(x,y), new Vector2(0, -speed))));
 		}
+	}
+	
+	private void collisionDetection(Enemy e) {
+		for(Missile m : missiles) {
+			if(e.getBounds().overlaps(m.getBounds())) {
+				enemies.removeValue(e, false);
+				missiles.removeValue(m, false);
+			}
+		}
+		if(e.getBounds().overlaps(player.getBounds()))
+			gameover = true;
+	}
+	
+	private void removeMissiles(Missile m) {
+		if(m.pos.y > ShooterGame.HEIGHT)
+			missiles.removeValue(m, false);
 	}
 	
 }

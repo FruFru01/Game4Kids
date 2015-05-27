@@ -3,6 +3,7 @@ package at.fhj.itm13.projectwork.entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
@@ -30,4 +31,9 @@ public abstract class Entity {
 		direction.set(x,y);
 		direction.scl(Gdx.graphics.getDeltaTime());
 	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(pos.x, pos.y, texture.getWidth(), texture.getHeight());
+	}
+	
 }

@@ -12,6 +12,7 @@ public class Missile extends Entity{
 
 	@Override
 	public void update() {
+		pos.add(direction);
 		
 	}
 
