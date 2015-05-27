@@ -10,6 +10,8 @@ public class AssetManager {
 	public static Texture ENEMY = new Texture(Gdx.files.internal("enemy.png"));
 	public static Texture MISSILE = new Texture(Gdx.files.internal("missile.png"));
 	
+	//public static Texture GAMEOVER = new Texture(Gdx.files.internal("gameover.png"));
+	
 	//public static Music bgmusic = Gdx.audio.newMusic("");	//music
 	//bgmusic.setLooping(true);
 	//bgmusic.play();

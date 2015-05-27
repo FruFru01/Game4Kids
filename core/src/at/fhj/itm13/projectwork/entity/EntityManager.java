@@ -12,7 +12,7 @@ public class EntityManager {
 
 	private final Array<Enemy> enemies = new Array<Enemy>();
 	private final Array<Missile> missiles = new Array<Missile>();
-	private final Player player = new Player(new Vector2(230, 50), new Vector2(0,0), this);
+	private final Player player = new Player(new Vector2(230, 10), new Vector2(0,0), this);
 	private int enemyAmount;
 	private long timestamp = 0;
 	private boolean gameover = false;

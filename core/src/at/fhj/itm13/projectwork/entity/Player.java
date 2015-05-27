@@ -35,7 +35,7 @@ public class Player extends Entity {
 			setDirection(0, 0);
 		
 		//if(Gdx.input.isKeyPressed(Keys.SPACE))
-			entityManager.addMissile(new Missile(new Vector2(pos.x + texture.getWidth()/2, pos.y), new Vector2(0, 5)));
+			entityManager.addMissile(new Missile(new Vector2(pos.x + texture.getWidth()/2-10, pos.y + texture.getHeight()), new Vector2(0, 5))); //-10 = half missile width
 	}
 
 }
