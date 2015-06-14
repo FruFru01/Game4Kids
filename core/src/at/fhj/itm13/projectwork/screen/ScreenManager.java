@@ -9,8 +9,6 @@ public class ScreenManager {
 	}
 
 	public static void setCurrentScreen(Screen currentScreen) {
-		if(currentScreen != null)
-			currentScreen.dispose();
 		ScreenManager.currentScreen = currentScreen;
 		currentScreen.create();
 	}

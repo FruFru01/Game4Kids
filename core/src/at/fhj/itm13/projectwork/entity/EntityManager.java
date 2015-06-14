@@ -2,6 +2,8 @@ package at.fhj.itm13.projectwork.entity;
 
 import at.fhj.itm13.projectwork.AssetManager;
 import at.fhj.itm13.projectwork.ShooterGame;
+import at.fhj.itm13.projectwork.screen.GameOverScreen;
+import at.fhj.itm13.projectwork.screen.ScreenManager;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -36,6 +38,11 @@ public class EntityManager {
 			m.update();
 			removeMissiles(m);
 		}
+		
+		if(gameover) {
+			ScreenManager.getCurrentScreen().dispose();
+			ScreenManager.setCurrentScreen(new GameOverScreen());
+		}
 	}
 	
 	public void render(SpriteBatch sb) {
@@ -56,6 +63,7 @@ public class EntityManager {
 		if(System.currentTimeMillis() >= timestamp + 300) {
 			missiles.add(m);
 			timestamp = System.currentTimeMillis();
+			AssetManager.SHOOT.play();
 		}
 	}
 	
@@ -77,10 +85,13 @@ public class EntityManager {
 			if(e.getBounds().overlaps(m.getBounds())) {
 				enemies.removeValue(e, false);
 				missiles.removeValue(m, false);
+				AssetManager.EXPLOSE.play();
 			}
 		}
-		if(e.getBounds().overlaps(player.getBounds()))
+		if(e.getBounds().overlaps(player.getBounds())) {
 			gameover = true;
+			AssetManager.EXPLOSE.play();
+		}
 	}
 	
 	private void removeMissiles(Missile m) {

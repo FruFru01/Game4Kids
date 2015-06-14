@@ -1,5 +1,6 @@
 package at.fhj.itm13.projectwork.screen;
 
+import at.fhj.itm13.projectwork.AssetManager;
 import at.fhj.itm13.projectwork.ShooterGame;
 import at.fhj.itm13.projectwork.entity.EntityManager;
 
@@ -15,7 +16,9 @@ public class GameScreen extends Screen{
 	public void create() {
 		entityManager = new EntityManager();
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, ShooterGame.WIDTH, ShooterGame.HEIGHT);	
+		camera.setToOrtho(false, ShooterGame.WIDTH, ShooterGame.HEIGHT);
+		AssetManager.BGMUSIC.setLooping(true);
+		AssetManager.BGMUSIC.play();
 	}
 
 	@Override
@@ -40,19 +43,19 @@ public class GameScreen extends Screen{
 
 	@Override
 	public void dispose() {
-		
+		AssetManager.BGMUSIC.dispose();
 		
 	}
 
 	@Override
 	public void pause() {
-		
+		AssetManager.BGMUSIC.pause();
 		
 	}
 
 	@Override
 	public void resume() {
-		
+		AssetManager.BGMUSIC.play();
 		
 	}
 
