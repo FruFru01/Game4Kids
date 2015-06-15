@@ -1,6 +1,6 @@
 package at.fhj.itm13.projectwork;
 
-import at.fhj.itm13.projectwork.screen.GameScreen;
+import at.fhj.itm13.projectwork.screen.MenuScreen;
 import at.fhj.itm13.projectwork.screen.ScreenManager;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -15,7 +15,7 @@ public class ShooterGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		ScreenManager.setCurrentScreen(new GameScreen());
+		ScreenManager.setCurrentScreen(new MenuScreen());
 	}
 	
 	@Override

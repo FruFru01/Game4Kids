@@ -4,6 +4,7 @@ import at.fhj.itm13.projectwork.AssetManager;
 import at.fhj.itm13.projectwork.ShooterGame;
 import at.fhj.itm13.projectwork.entity.EntityManager;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -17,8 +18,12 @@ public class GameScreen extends Screen{
 		entityManager = new EntityManager();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, ShooterGame.WIDTH, ShooterGame.HEIGHT);
-		AssetManager.BGMUSIC.setLooping(true);
-		AssetManager.BGMUSIC.play();
+		//Gdx.app.debug("DEBUG!", "Game has started");
+		if(AssetManager.sound) {
+			//Gdx.app.error("DEBUG!", "Music is on!");
+			AssetManager.BGMUSIC.setLooping(true);
+			AssetManager.BGMUSIC.play();
+		}
 	}
 
 	@Override
@@ -38,24 +43,27 @@ public class GameScreen extends Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		//camera.resize		
+
 	}
 
 	@Override
 	public void dispose() {
-		AssetManager.BGMUSIC.dispose();
+		if(AssetManager.sound)
+			AssetManager.BGMUSIC.dispose();
 		
 	}
 
 	@Override
 	public void pause() {
-		AssetManager.BGMUSIC.pause();
+		if(AssetManager.sound)
+			AssetManager.BGMUSIC.pause();
 		
 	}
 
 	@Override
 	public void resume() {
-		AssetManager.BGMUSIC.play();
+		if(AssetManager.sound)
+			AssetManager.BGMUSIC.play();
 		
 	}
 

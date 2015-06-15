@@ -1,0 +1,18 @@
+{
+	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+        "futureFont": { "file": "fonts/kenvector_future.fnt" },
+        "futureFontWhite": { "file": "fonts/kenvector_future_white.fnt" }
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": { 
+        "default": { "up": "white_button_up" , "down": "white_button_down", "font": futureFont, "pressedOffsetY": -4 }
+    },
+    "com.badlogic.gdx.graphics.Color": {
+        "white": { "r": 1, "g": 1, "b": 1, "a": 1 },
+        "black": { "r": 0, "g": 0, "b": 0, "a": 1 },
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+        "black": { "font": futureFont },
+        "white": {"font": futureFontWhite, "fontColor": white}
+    }
+    
+}

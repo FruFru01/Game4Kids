@@ -6,79 +6,71 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class GameOverScreen extends Screen{
+public class ConfigurationScreen extends Screen{
 
 	private Stage stage;	
 	private Skin skin;
 	private Table table;
-	private TextButton againButton;
-	private TextButton exitButton;
-	private TextButton menuButton;
+	private TextButton startButton;
+	private TextButton backButton;
 	private Label title;
+	
 	
 	@Override
 	public void create() {
+		
+
 		stage = new Stage();
 		table = new Table();
 		
 		//Create Label, and Buttons
 		skin = new Skin(Gdx.files.internal("skins/skin.json"), new TextureAtlas(Gdx.files.internal("skins/button.pack")));
 		
-		title = new Label("Game Over", skin.get("white", LabelStyle.class));
+		title = new Label("Configure your Game!", skin.get("white", LabelStyle.class));
 		
-		againButton = new TextButton("Try again!", skin);
+		startButton = new TextButton("Start Game!", skin);
 		
-		exitButton = new TextButton("Exit", skin);
-		
-		menuButton = new TextButton("Back to menu", skin);
+		backButton = new TextButton("Back to main menu", skin);
 		
 		// Add Button functionality
-		againButton.addListener(new ClickListener(){
+		startButton.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				ScreenManager.getCurrentScreen().dispose();
 				ScreenManager.setCurrentScreen(new GameScreen());
 			}
-		
 		});
-		exitButton.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				Gdx.app.exit();
-			}
-		
-		});
-		menuButton.addListener(new ClickListener(){
+		backButton.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				ScreenManager.getCurrentScreen().dispose();
 				ScreenManager.setCurrentScreen(new MenuScreen());
 			}
-		
 		});
 		
 		
 		// Add Objects into Table
 		table.add(title).padBottom(60).row();
 		
-		table.add(againButton).size(300,60).padBottom(20).row();
-		table.add(exitButton).size(300,60).padBottom(20).row();
-		table.add(menuButton).size(300,60).padBottom(20).row();
+		table.add(startButton).size(350,60).padBottom(20).row();
+		table.add(backButton).size(350,60).padBottom(20).row();
 		
 		table.setFillParent(true);
 		stage.addActor(table);
 		
 		Gdx.input.setInputProcessor(stage);
+		
 	}
 
 	@Override
 	public void update() {
+		
 	}
 
 	@Override

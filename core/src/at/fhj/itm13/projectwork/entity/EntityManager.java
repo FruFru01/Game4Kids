@@ -63,7 +63,8 @@ public class EntityManager {
 		if(System.currentTimeMillis() >= timestamp + 300) {
 			missiles.add(m);
 			timestamp = System.currentTimeMillis();
-			AssetManager.SHOOT.play();
+			if(AssetManager.sound)
+				AssetManager.SHOOT.play();
 		}
 	}
 	
@@ -85,12 +86,14 @@ public class EntityManager {
 			if(e.getBounds().overlaps(m.getBounds())) {
 				enemies.removeValue(e, false);
 				missiles.removeValue(m, false);
-				AssetManager.EXPLOSE.play();
+				if(AssetManager.sound)
+					AssetManager.EXPLOSE.play();
 			}
 		}
 		if(e.getBounds().overlaps(player.getBounds())) {
 			gameover = true;
-			AssetManager.EXPLOSE.play();
+			if(AssetManager.sound)
+				AssetManager.EXPLOSE.play();
 		}
 	}
 	
