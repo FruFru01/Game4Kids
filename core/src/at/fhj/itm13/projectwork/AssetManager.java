@@ -15,7 +15,6 @@ public class AssetManager {
 	
 	public static boolean sound = true;
 	
-	public static Music BGMUSIC = Gdx.audio.newMusic(Gdx.files.internal("music/bg_music.wav"));	//music
 	public static Sound EXPLOSE = Gdx.audio.newSound(Gdx.files.internal("music/explosion.wav"));	//music
 	public static Sound SHOOT = Gdx.audio.newSound(Gdx.files.internal("music/laser2.wav"));	//music
 

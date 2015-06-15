@@ -76,9 +76,9 @@ public class SettingsScreen extends Screen{
 		// Add Objects into Table
 		table.add(title).padBottom(60).row();
 		
-		table.add(soundButton).size(350,60).padBottom(20).row();
-		table.add(languageButton).size(350,60).padBottom(20).row();
-		table.add(backButton).size(350,60).padBottom(20).row();
+		table.add(soundButton).size(370,60).padBottom(20).row();
+		//table.add(languageButton).size(370,60).padBottom(20).row();
+		table.add(backButton).size(370,60).padBottom(20).row();
 		
 		table.setFillParent(true);
 		stage.addActor(table);

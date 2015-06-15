@@ -5,6 +5,7 @@ import at.fhj.itm13.projectwork.ShooterGame;
 import at.fhj.itm13.projectwork.entity.EntityManager;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -12,17 +13,18 @@ public class GameScreen extends Screen{
 
 	private OrthographicCamera camera;
 	private EntityManager entityManager;
+	public Music bgmusic = Gdx.audio.newMusic(Gdx.files.internal("music/bg_music.wav"));
 	
 	@Override
 	public void create() {
 		entityManager = new EntityManager();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, ShooterGame.WIDTH, ShooterGame.HEIGHT);
-		//Gdx.app.debug("DEBUG!", "Game has started");
 		if(AssetManager.sound) {
-			//Gdx.app.error("DEBUG!", "Music is on!");
-			AssetManager.BGMUSIC.setLooping(true);
-			AssetManager.BGMUSIC.play();
+			Gdx.app.error("DEBUG!", "Music is on!");
+			if(!bgmusic.isLooping())
+				bgmusic.setLooping(true);
+			bgmusic.play();
 		}
 	}
 
@@ -49,21 +51,21 @@ public class GameScreen extends Screen{
 	@Override
 	public void dispose() {
 		if(AssetManager.sound)
-			AssetManager.BGMUSIC.dispose();
+			bgmusic.dispose();
 		
 	}
 
 	@Override
 	public void pause() {
 		if(AssetManager.sound)
-			AssetManager.BGMUSIC.pause();
+			bgmusic.pause();
 		
 	}
 
 	@Override
 	public void resume() {
 		if(AssetManager.sound)
-			AssetManager.BGMUSIC.play();
+			bgmusic.play();
 		
 	}
 
