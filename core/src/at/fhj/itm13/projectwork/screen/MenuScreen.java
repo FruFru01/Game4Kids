@@ -47,7 +47,7 @@ public class MenuScreen extends Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				ScreenManager.getCurrentScreen().dispose();
-				ScreenManager.setCurrentScreen(new GameScreen());
+				ScreenManager.setCurrentScreen(new ConfigurationScreen());
 			}
 		
 		});

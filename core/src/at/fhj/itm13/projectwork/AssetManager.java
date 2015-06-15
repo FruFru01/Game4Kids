@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class AssetManager {
 	
-	public static Texture PLAYER = new Texture(Gdx.files.internal("images/spaceship.png"));
+	public static Texture PLAYER = new Texture(Gdx.files.internal("images/spaceship0.png"));
 	public static Texture ENEMY = new Texture(Gdx.files.internal("images/enemy.png"));
 	public static Texture MISSILE = new Texture(Gdx.files.internal("images/missile.png"));
 	
@@ -18,7 +18,7 @@ public class AssetManager {
 	public static Sound SHOOT = Gdx.audio.newSound(Gdx.files.internal("music/laser2.wav"));	//music
 	
 	public static void setPlayer(Texture texture) {
-		
+		PLAYER = texture;
 	}
 	
 

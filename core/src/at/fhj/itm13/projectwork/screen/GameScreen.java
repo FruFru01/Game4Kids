@@ -21,7 +21,6 @@ public class GameScreen extends Screen{
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, ShooterGame.WIDTH, ShooterGame.HEIGHT);
 		if(AssetManager.sound) {
-			Gdx.app.error("DEBUG!", "Music is on!");
 			if(!bgmusic.isLooping())
 				bgmusic.setLooping(true);
 			bgmusic.play();

@@ -16,7 +16,6 @@ public class ShooterGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		//ScreenManager.setCurrentScreen(new ConfigurationScreen());
 		ScreenManager.setCurrentScreen(new MenuScreen());
 	}
 	
