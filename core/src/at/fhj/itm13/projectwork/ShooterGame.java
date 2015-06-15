@@ -1,5 +1,6 @@
 package at.fhj.itm13.projectwork;
 
+import at.fhj.itm13.projectwork.screen.ConfigurationScreen;
 import at.fhj.itm13.projectwork.screen.MenuScreen;
 import at.fhj.itm13.projectwork.screen.ScreenManager;
 
@@ -15,6 +16,7 @@ public class ShooterGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		//ScreenManager.setCurrentScreen(new ConfigurationScreen());
 		ScreenManager.setCurrentScreen(new MenuScreen());
 	}
 	

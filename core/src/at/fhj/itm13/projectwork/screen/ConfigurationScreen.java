@@ -1,18 +1,27 @@
 package at.fhj.itm13.projectwork.screen;
 
+import java.util.Set;
+
+import at.fhj.itm13.projectwork.AssetManager;
 import at.fhj.itm13.projectwork.ShooterGame;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class ConfigurationScreen extends Screen{
@@ -24,10 +33,20 @@ public class ConfigurationScreen extends Screen{
 	private TextButton backButton;
 	private Label title;
 	
+	private Table shipTable;
+	private Array<Image> ships;
+	
 	
 	@Override
 	public void create() {
+		ships = new Array<Image>();
 		
+		// Add all images to Set
+		for(int i=0; i<5; i++) {
+			Image ship = new Image();
+			ship.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("images/spaceship" + i + ".png")))));
+			ships.add(ship);
+		}
 
 		stage = new Stage(new StretchViewport(ShooterGame.WIDTH, ShooterGame.HEIGHT));
 		table = new Table();
@@ -57,9 +76,22 @@ public class ConfigurationScreen extends Screen{
 			}
 		});
 		
+		//Ship Selection
+		shipTable = new Table(skin);		
+		for(Image i: ships) {
+			shipTable.add(i);
+			i.addListener(new ClickListener(){
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					//AssetManager.setPlayer(i.get);
+				}
+			});
+		}
 		
 		// Add Objects into Table
 		table.add(title).padBottom(60).row();
+		
+		table.add(shipTable).padBottom(20).row();
 		
 		table.add(startButton).size(350,60).padBottom(20).row();
 		table.add(backButton).size(350,60).padBottom(20).row();

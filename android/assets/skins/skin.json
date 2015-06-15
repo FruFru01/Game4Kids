@@ -13,6 +13,9 @@
     "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
         "black": { "font": futureFont },
         "white": {"font": futureFontWhite, "fontColor": white}
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
+    	"default": {}
     }
     
 }

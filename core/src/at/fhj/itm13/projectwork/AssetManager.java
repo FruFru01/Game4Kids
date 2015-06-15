@@ -16,5 +16,10 @@ public class AssetManager {
 	
 	public static Sound EXPLOSE = Gdx.audio.newSound(Gdx.files.internal("music/explosion.wav"));	//music
 	public static Sound SHOOT = Gdx.audio.newSound(Gdx.files.internal("music/laser2.wav"));	//music
+	
+	public static void setPlayer(Texture texture) {
+		
+	}
+	
 
 }
