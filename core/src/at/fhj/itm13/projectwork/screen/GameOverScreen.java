@@ -1,5 +1,7 @@
 package at.fhj.itm13.projectwork.screen;
 
+import at.fhj.itm13.projectwork.ShooterGame;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class GameOverScreen extends Screen{
 
@@ -24,7 +27,7 @@ public class GameOverScreen extends Screen{
 	
 	@Override
 	public void create() {
-		stage = new Stage();
+		stage = new Stage(new StretchViewport(ShooterGame.WIDTH, ShooterGame.HEIGHT));
 		table = new Table();
 		
 		//Create Label, and Buttons
@@ -89,7 +92,7 @@ public class GameOverScreen extends Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		
+		stage.getViewport().update(width, height, true);
 	}
 
 	@Override

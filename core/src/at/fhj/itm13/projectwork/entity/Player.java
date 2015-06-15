@@ -22,9 +22,9 @@ public class Player extends Entity {
 			pos.add(direction);
 		
 		int dir = 0;
-		if(Gdx.input.getAccelerometerX() > 0)
+		if(Gdx.input.getAccelerometerX() > 0.5)
 			dir=1;
-		if(Gdx.input.getAccelerometerX() < 0)
+		if(Gdx.input.getAccelerometerX() < -0.5)
 			dir=2;
 		
 		if(Gdx.input.isTouched() || Gdx.input.isKeyPressed(Keys.SPACE)) 
