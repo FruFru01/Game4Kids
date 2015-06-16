@@ -3,6 +3,7 @@ package at.fhj.itm13.projectwork.screen;
 import at.fhj.itm13.projectwork.ShooterGame;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -24,16 +25,30 @@ public class GameOverScreen extends Screen{
 	private TextButton exitButton;
 	private TextButton menuButton;
 	private Label title;
+	private Label score;
+	private Label highscore;
+	private String hscoreString;
 	
 	@Override
 	public void create() {
 		stage = new Stage(new StretchViewport(ShooterGame.WIDTH, ShooterGame.HEIGHT));
 		table = new Table();
+
+		FileHandle scoreFile = Gdx.files.local("score.txt");
+		if(Gdx.files.local("highscore.txt").exists()) {
+			FileHandle hscoreFile = Gdx.files.local("highscore.txt");
+			hscoreString = hscoreFile.readString();
+		}
+		String scoreString = scoreFile.readString();
 		
 		//Create Label, and Buttons
 		skin = new Skin(Gdx.files.internal("skins/skin.json"), new TextureAtlas(Gdx.files.internal("skins/button.pack")));
 		
 		title = new Label("Game Over", skin.get("white", LabelStyle.class));
+		score = new Label("Score: " + scoreString, skin.get("white", LabelStyle.class));
+		highscore = new Label("Highscore: 0", skin.get("white", LabelStyle.class));
+		if(hscoreString != null)
+			highscore.setText("Highscore: " + hscoreString);
 		
 		againButton = new TextButton("Try again!", skin);
 		
@@ -68,7 +83,9 @@ public class GameOverScreen extends Screen{
 		
 		
 		// Add Objects into Table
-		table.add(title).padBottom(60).row();
+		table.add(title).padBottom(20).row();
+		table.add(score).padBottom(40).row();
+		table.add(highscore).padBottom(40).row();
 		
 		table.add(againButton).size(300,60).padBottom(20).row();
 		table.add(exitButton).size(300,60).padBottom(20).row();

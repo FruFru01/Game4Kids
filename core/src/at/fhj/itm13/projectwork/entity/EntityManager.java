@@ -5,6 +5,8 @@ import at.fhj.itm13.projectwork.ShooterGame;
 import at.fhj.itm13.projectwork.screen.GameOverScreen;
 import at.fhj.itm13.projectwork.screen.ScreenManager;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -18,6 +20,7 @@ public class EntityManager {
 	private int enemyAmount;
 	private long timestamp = 0;
 	private boolean gameover = false;
+	private int score;
 	
 	public EntityManager() {
 		enemyAmount = 10;
@@ -75,7 +78,7 @@ public class EntityManager {
 	private void createEnemies() {
 		for(int i=0; i<enemyAmount; i++) {
 			float x = MathUtils.random(0, ShooterGame.WIDTH - AssetManager.ENEMY.getWidth()); 
-			float y = MathUtils.random(ShooterGame.HEIGHT, ShooterGame.HEIGHT*2);
+			float y = MathUtils.random(ShooterGame.HEIGHT*2, ShooterGame.HEIGHT*3);
 			float speed = MathUtils.random(2,5);
 			addEnemy((new Enemy(new Vector2(x,y), new Vector2(0, -speed))));
 		}
@@ -88,18 +91,36 @@ public class EntityManager {
 				missiles.removeValue(m, false);
 				if(AssetManager.sound)
 					AssetManager.EXPLOSE.play();
+				score += 10;
 			}
 		}
 		if(e.getBounds().overlaps(player.getBounds())) {
 			gameover = true;
 			if(AssetManager.sound)
 				AssetManager.EXPLOSE.play();
+			saveScore();
 		}
 	}
 	
 	private void removeMissiles(Missile m) {
 		if(m.pos.y > ShooterGame.HEIGHT)
 			missiles.removeValue(m, false);
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
+	private void saveScore() {
+		FileHandle scoreFile = Gdx.files.local("score.txt");	
+		FileHandle hscoreFile = Gdx.files.local("highscore.txt");
+		if(!hscoreFile.exists())
+			hscoreFile.writeString("0", false);
+		
+		if(score > Integer.parseInt(hscoreFile.readString()))
+			hscoreFile.writeString("" + score, false);
+		
+		scoreFile.writeString("" + score, false);
 	}
 	
 }
