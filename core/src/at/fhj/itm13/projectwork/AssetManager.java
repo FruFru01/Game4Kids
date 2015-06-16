@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class AssetManager {
 	
 	public static Texture PLAYER = new Texture(Gdx.files.internal("images/spaceship0.png"));
-	public static Texture ENEMY = new Texture(Gdx.files.internal("images/enemy.png"));
+	public static Texture ENEMY = new Texture(Gdx.files.internal("images/enemy0.png"));
 	public static Texture MISSILE = new Texture(Gdx.files.internal("images/missile.png"));
 	
 	//public static Texture GAMEOVER = new Texture(Gdx.files.internal("gameover.png"));
@@ -19,6 +19,10 @@ public class AssetManager {
 	
 	public static void setPlayer(Texture texture) {
 		PLAYER = texture;
+	}
+	
+	public static void setEnemy(Texture texture) {
+		ENEMY = texture;
 	}
 	
 
